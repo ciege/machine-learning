@@ -1,0 +1,15 @@
+{
+    "contents" : "createMatrix <- function (row){\n  numX <- matrix(row, 28, byrow = T)\n  \n  colSum <- rep(0, 12)\n  colSum <- numX[,1]\n  \n  rowSum <- rep(0, 12) \n  rowSum <-  numX[1,]\n  \n  for (i in 10:19){\n    rowTemp <- numX[i,]\n    colTemp <- numX[,i]\n    \n    rowTemp <-  rowTemp %% 8.5\n    colTemp <-  colTemp %% 8.5\n    \n    #adj <-  1 / i\n    #rowTemp <- adj + rowTemp\n    #colTemp <- adj + colTemp\n    \n    rowSum <- cbind(rowTemp , rowSum)\n    colSum <- cbind(colTemp , colSum)\n  }\n  return(as.vector(cbind(rowSum,colSum)))\n}",
+    "created" : 1371050178619.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3789764105",
+    "id" : "3BA5A5C0",
+    "lastKnownWriteTime" : 1371557968,
+    "path" : "C:/numbers/adjNumVector.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

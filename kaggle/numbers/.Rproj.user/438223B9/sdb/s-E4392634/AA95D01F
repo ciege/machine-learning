@@ -1,0 +1,16 @@
+{
+    "contents" : "# Kaggle: Digit Recognizer\n# https://www.kaggle.com/c/digit-recognizer/data\n# produce submission file with optimal knn model\n\n# load training and test datasets\ntrain <- read.csv(\"/Users/u78671/Downloads/train.csv\", header=TRUE)\ntest <- read.csv(\"/Users/u78671/Downloads/test.csv\", header=TRUE)\n\n##############################\n# Weighted k-Nearest Neighbors\nlibrary(kknn)\n\n# remove pixels with near zero variance -- not good predictors\nlibrary(caret)\nbadCols <- nearZeroVar(train[,-1])\nprint(paste(\"Fraction of nearZeroVar columns:\", round(length(badCols)/length(train),4)))\ntrain <- train[, -(badCols+1)]\ntest <- test[, -badCols]\n\n# train the kknn model\nmodel <- kknn(as.factor(label) ~ ., train, test, k=9, kernel=\"triangular\")\nresults <- model$fitted.values\n\n# save the output as column vector\nwrite(as.numeric(levels(results))[results], file=\"kknn_submission2.csv\", ncolumns=1)\n\n##########################################################\n# Fast Nearest Neighbor Search Algorithms and Applications\nlibrary(FNN)\n\n# drop label columns for use in KNN\ntrainCl <- data.frame(train[, 1])\ntrain <- data.frame(train[, -1])\n\n# remove pixels with near zero variance -- not good predictors\nlibrary(caret)\nbadCols <- nearZeroVar(train)\nprint(paste(\"Fraction of nearZeroVar columns:\", round(length(badCols)/length(train),4)))\ntrain <- data.frame(train[, -badCols])\ntest <- data.frame(test[, -badCols])\n\n# train the knn model\nresults <- (0:9)[knn(train, test, trainCl, k=5, algorithm=\"cover_tree\")]\n\n# save the output as column vector\nwrite(results, file=\"knn_submission.csv\", ncolumns=1)",
+    "created" : 1371076780305.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3605293761",
+    "id" : "AA95D01F",
+    "lastKnownWriteTime" : 1371154826,
+    "path" : "C:/numbers/stolenKKN.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

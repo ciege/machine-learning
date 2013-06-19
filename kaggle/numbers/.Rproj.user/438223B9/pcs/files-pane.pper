@@ -1,0 +1,9 @@
+{
+    "path" : "C:/numbers",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+{
+    "contents" : "source(\"/numbers/adjNumVector.R\")\nlibrary(sda)\nlibrary(randomForest)\nlibrary(FNN)\nlibrary(kknn)\ntrain <- read.csv(\"/Users/u78671/Downloads/train.csv\", header=TRUE)\ntest <- read.csv(\"/Users/u78671/Downloads/test.csv\", header=TRUE)\n\n\nnameV <- colnames( test )\nnameV <- nameV[1:784]\n\ntestP <- matrix(0, 0,288) \ncolnames(testP) <- nameV[1:288]\n\ntrainP <- matrix(0, 0,288) \ncolnames(trainP) <- nameV[1:288]\n\nlabels <- as.character(train[,1])\ntrain <- train[,-1]\n\nrowP <-  rep(0, 288) \n\ntestM <- as.matrix(test)\nfor(i in 1:nrow(testM)){\n  rowP <- createMatrix(testM[i,])\n  testP <-  rbind(testP,as.vector(rowP))\n}\n\ntrainM <- as.matrix(train)\nfor(i in 1:nrow(trainM)){\n  rowP <- createMatrix(trainM[i,])\n  trainP <-  rbind(trainP,as.vector(rowP))\n}\ntestDF <- data.frame(testP)\ntrainDF <- data.frame(trainP)\nlabelsF <- as.factor(labels)\ntrainAll <- data.frame(labels,trainP) \ntrainAll\n\nnum.rf <- randomForest(labels ~ ., data=trainAll)\nnum.pred <- predict(num.rf, testP)\ntable(observed = num.rf[\"labels\"], predicted = num.pred)\n## Get prediction for all trees.randomForest 17\npredict(num.rf, trainP, predict.all=TRUE)\n## Proximities.\npredict(num.rf, trainP, proximity=TRUE)\n## Nodes matrix.\nstr(attr(predict(num.rf, trainP, nodes=TRUE), \"nodes\"))",
+    "created" : 1371558073500.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3406027538",
+    "id" : "AA306CD8",
+    "lastKnownWriteTime" : 1371558186,
+    "path" : "C:/numbers/numbers2.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

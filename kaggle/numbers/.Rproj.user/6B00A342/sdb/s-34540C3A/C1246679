@@ -1,0 +1,16 @@
+{
+    "contents" : "source(\"/home/cj/numbers/adjNumVector.R\")\n\ntrain <- read.csv(\"/home/cj/Downloads/train.csv\", header=TRUE)\ntest <- read.csv(\"/home/cj/Downloads/test.csv\", header=TRUE)\n\nlabels <- train[,1]\ntrain <- train[,-1]\n\nby(train, 1:nrow(train),function(row) adjX(row))\ntrain",
+    "created" : 1370122307597.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2313275927",
+    "id" : "C1246679",
+    "lastKnownWriteTime" : 1370186637,
+    "path" : "~/numbers/numbers1.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

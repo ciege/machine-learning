@@ -1,0 +1,16 @@
+{
+    "contents" : "library(doMC)\n> registerDoMC(cores = 5)\n>\n  > ## All subsequent models are then run in parallel\n  > model <- train(labels ~ ., data = trainP, method = \"rf\")",
+    "created" : 1371570234058.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3039431893",
+    "id" : "21615B9F",
+    "lastKnownWriteTime" : 1371564216,
+    "path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
